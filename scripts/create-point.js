@@ -13,8 +13,6 @@ function populateUf(){
 
 populateUf()
 
-let aux = 0
-
 function getCities(event){
     const citySelect = document.querySelector('select[name=city]')
     const stateInput = document.querySelector('input[name=stateHidden]')
@@ -22,23 +20,14 @@ function getCities(event){
 
     const indexOfSelectateUf = event.target.selectedIndex
     stateInput.value = event.target.options[indexOfSelectateUf].text
-    
+
     const url= `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${ufValue}/municipios`
 
     citySelect.disabled=false
 
-    if(ufValue && aux === 0){
-        fetch(url)
-        .then(res=>res.json())
-        .then(cities=>{
-            for(const city of cities){
-                citySelect.innerHTML += `<option value="${city.id}">${city.nome}</option>`
-            }
-        })
-        aux ++
-        console.log(aux)
-    }else if(ufValue && aux>=1){
+    if(ufValue){
         citySelect.innerHTML = `<option value="">Selecione a cidade</option>`
+
         fetch(url)
         .then(res=>res.json())
         .then(cities=>{
@@ -46,8 +35,7 @@ function getCities(event){
                 citySelect.innerHTML += `<option value="${city.id}">${city.nome}</option>`
             }
         })
-    }
-    else{
+    }else{
         citySelect.disabled = true
         citySelect.innerHTML = `<option value="">Selecione a cidade</option>`
     }
