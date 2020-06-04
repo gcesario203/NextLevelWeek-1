@@ -20,6 +20,18 @@
     #page-search-results .cards{
         grid-template-columns: 1fr;
     }
+
+    #page-create-point .field-group{
+        display: inline;
+    }
+
+    #page-create-point .field+.field{
+        margin-left: 0;
+    }
+
+    #page-create-point .items-grid{
+        grid-template-columns: 1fr;
+    }
 }
 @media(min-width:1700px){
     #page-home{
@@ -29,5 +41,10 @@
 @media(max-height:760px){
     #page-home{
         background-position-y:200px;
+    }
+}
+@media(max-width:680px){
+    #page-create-point legend{
+        display: inline;
     }
 }
