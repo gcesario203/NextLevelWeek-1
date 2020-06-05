@@ -9,31 +9,30 @@
 {% block content %}
     {% include "partials/page-header.html" %}
         <main>
-            <h4>
-                <strong>2 pontos</strong> encontrados
-            </h4>
-            <div class="cards">
-                <div class="card">
-                    <img src="https://images.unsplash.com/photo-1561363232-14c6bf728839?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" alt="Colectoria">
-                    <h1>Colectoria</h1>
-                    <h3>Residuos eletronicos, Lâmpadas</h3>
-                    <p>
-                        Rio do Sul, Santa Catarina<br/>
-                        Guilerme Gemballa, Jardim América<br/>
-                        Nº 260
-                    </p>
-                </div>
-                <div class="card">
-                    <img src="https://images.unsplash.com/photo-1528323273322-d81458248d40?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1401&q=80" alt="Paperside">
-                    <h1>Paperside</h1>
-                    <h3>Papéis e papelão</h3>
-                    <p>
-                        Rio do Sul, Santa Catarina<br/>
-                        Guilerme Gemballa, Jardim América<br/>
-                        Nº 260
-                    </p>
-                </div>
+
+        {% if points.length>0%}
+              <h4>
+                <strong>{{points.length}} pontos</strong> encontrados
+                <div class="cards">
+                {% for point in points %}
+                    <div class="card">
+                        <img src="{{point.image}}" alt="{{point.name}}">
+                        <h1>{{point.name}}</h1>
+                        <h3>{{point.items}}</h3>
+                        <p>
+                        {{point.state}}, {{point.city}}<br/>
+                        {{point.address}}<br/>
+                        {{point.address2}}
+                        </p>
+                    </div>
+                {% endfor %}
             </div>
+            </h4>
+        {%else%}
+            <h1>
+                <strong>Nenhum</strong> objeto encontrado</strong>
+            </h1>
+        {% endif %}
         </main>
 {% endblock content %}
 </body>

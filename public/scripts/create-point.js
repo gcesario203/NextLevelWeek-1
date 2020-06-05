@@ -1,5 +1,5 @@
 function populateUf(){
-    const stateSelect = document.querySelector('select[name=state]')
+    const stateSelect = document.querySelector('select[name=uf]')
 
     fetch('https://servicodados.ibge.gov.br/api/v1/localidades/estados')
     .then(res=>res.json())
@@ -15,7 +15,7 @@ populateUf()
 
 function getCities(event){
     const citySelect = document.querySelector('select[name=city]')
-    const stateInput = document.querySelector('input[name=stateHidden]')
+    const stateInput = document.querySelector('input[name=state]')
     const ufValue = event.target.value
 
     const indexOfSelectateUf = event.target.selectedIndex
@@ -42,7 +42,7 @@ function getCities(event){
 
 }
 
-document.querySelector("select[name=state]")
+document.querySelector("select[name=uf]")
 .addEventListener("change", getCities)
 
 const itemsToCollect = document.querySelectorAll('.items-grid li')
